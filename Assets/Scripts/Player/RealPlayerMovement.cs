@@ -81,7 +81,7 @@ public class RealPlayerMovement : MonoBehaviour
     }
 
     private void CameraRotation(){
-        cameraInput = playerInput.actions["CameraMove"].ReadValue<Vector2>().normalized;
+        cameraInput = playerInput.actions["Look"].ReadValue<Vector2>().normalized;
         camFollow.transform.rotation *= Quaternion.AngleAxis(cameraInput.x * camRotationPower, Vector3.up);
 
         camFollow.transform.rotation *= Quaternion.AngleAxis(cameraInput.y * camRotationPower, Vector3.right);
