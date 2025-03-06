@@ -9,12 +9,12 @@ public class SceneController : MonoBehaviour
     void Start()
     {
         GameObject player1 = Instantiate(playerPrefab, new Vector3(-2, 1.75f, 0), Quaternion.identity);
-        player1.GetComponent<RealPlayerMovement>().playerID = 1;
-        player1.GetComponent<Renderer>().material.color = Color.cyan;
+        player1.GetComponentInChildren<RealPlayerMovement>().playerID = 1;
+        player1.GetComponentInChildren<Renderer>().material.color = Color.cyan;
 
         GameObject player2 = Instantiate(playerPrefab, new Vector3(2, 1.75f, 0), Quaternion.identity);
-        player2.GetComponent<RealPlayerMovement>().playerID = 2;
-        player2.GetComponent<Renderer>().material.color = Color.magenta;
+        player2.GetComponentInChildren<RealPlayerMovement>().playerID = 2;
+        player2.GetComponentInChildren<Renderer>().material.color = Color.magenta;
 
 
         ResumeGame();
