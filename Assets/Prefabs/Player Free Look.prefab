@@ -233,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390909553752418547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25340134, y: -5.2008303e-10, z: 9.8159675e-11, w: 0.9673613}
+  m_LocalRotation: {x: 0.25340134, y: 0.0000000020211939, z: -7.9721296e-10, w: 0.9673613}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
       Owner: {fileID: 4681717824881893895}
       Enabled: 1
       Input:
-        InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        InputAction: {fileID: 55623472682971785, guid: bfb2ae45667984f1ba1692a63fe4608a, type: 3}
         Gain: 2
         CancelDeltaTime: 0
       InputValue: 0
@@ -423,7 +423,7 @@ MonoBehaviour:
       Owner: {fileID: 4681717824881893895}
       Enabled: 1
       Input:
-        InputAction: {fileID: -5630151704836100654, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        InputAction: {fileID: 55623472682971785, guid: bfb2ae45667984f1ba1692a63fe4608a, type: 3}
         Gain: -1.5
         CancelDeltaTime: 0
       InputValue: -0
@@ -434,7 +434,7 @@ MonoBehaviour:
       Owner: {fileID: 4681717824881893895}
       Enabled: 1
       Input:
-        InputAction: {fileID: -423771258819551211, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
+        InputAction: {fileID: -4665183741699887622, guid: bfb2ae45667984f1ba1692a63fe4608a, type: 3}
         Gain: -1
         CancelDeltaTime: 0
       InputValue: -0
@@ -536,7 +536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994396059597606131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25340134, y: -5.307921e-10, z: 1.3904157e-10, w: 0.9673613}
+  m_LocalRotation: {x: 0.25340134, y: 0.0000000019458866, z: -5.097272e-10, w: 0.9673613}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
