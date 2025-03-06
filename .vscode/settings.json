@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "2 Player 3D Game.sln"
+    "dotnet.defaultSolution": "pills-of-hatred.sln"
 }
