@@ -169,7 +169,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 7602836172451041717}
@@ -356,8 +356,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7215288246442071017}
   serializedVersion: 2
-  m_LocalRotation: {x: -4.440892e-16, y: -6.200294e-26, z: 1.51668e-17, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 1, y: 2.1, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
