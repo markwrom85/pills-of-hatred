@@ -26,6 +26,7 @@ public class RealPlayerMovement : MonoBehaviour
     public Vector2 cameraInput;
     public float camRotationPower = 1.5f;
 
+[SerializeField] private Transform cam;
 
     void Awake()
     {
@@ -40,12 +41,14 @@ public class RealPlayerMovement : MonoBehaviour
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
         jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
         moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        moveDirection = new Vector3(cam.forward.x, 0, cam.forward.z) * moveInput.y;
+        moveDirection += cam.right * moveInput.x;
 
         if (moveDirection != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * moveSpeed);
         }
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        //transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         if (isGrounded())
         {
@@ -53,6 +56,8 @@ public class RealPlayerMovement : MonoBehaviour
         }
 
         //CameraRotation();
+
+        
     }
 
 
@@ -74,9 +79,9 @@ public class RealPlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-       rb.AddRelativeForce(Vector3.down * gravityForce * Time.deltaTime, ForceMode.Acceleration);
-        rb.AddRelativeForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
-        rb.AddRelativeTorque(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
+        rb.AddRelativeForce(Vector3.down * gravityForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+        rb.AddRelativeForce(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        //rb.AddRelativeTorque(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
     }
 
