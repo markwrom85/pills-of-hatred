@@ -11,7 +11,6 @@ public class RealPlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private PlayerInput playerInput;
     private Vector3 moveDirection;
-
     private bool jumpInput;
     private bool isGrounded()
     {
@@ -22,6 +21,11 @@ public class RealPlayerMovement : MonoBehaviour
         }
         return false;
     }
+
+    [SerializeField] private GameObject camFollow;
+    public Vector2 cameraInput;
+    public float camRotationPower = 1.5f;
+
 
     void Awake()
     {
@@ -47,6 +51,8 @@ public class RealPlayerMovement : MonoBehaviour
         {
             rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y * (jumpInput ? 1 : 0))/*multiply by result of if jump is pressed*/, ForceMode.VelocityChange);
         }
+
+        //CameraRotation();
     }
 
 
@@ -72,5 +78,30 @@ public class RealPlayerMovement : MonoBehaviour
         rb.AddRelativeForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
         rb.AddRelativeTorque(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
 
+    }
+
+    private void CameraRotation(){
+        cameraInput = playerInput.actions["Look"].ReadValue<Vector2>().normalized;
+        camFollow.transform.rotation *= Quaternion.AngleAxis(cameraInput.x * camRotationPower, Vector3.up);
+
+        camFollow.transform.rotation *= Quaternion.AngleAxis(cameraInput.y * camRotationPower, Vector3.right);
+
+        var angles = camFollow.transform.localEulerAngles;
+        angles.z = 0;
+
+        var angle = camFollow.transform.localEulerAngles.x;
+        if (angle > 180 && angle < 340)
+        {
+            angles.x = 340;
+        }
+        else if (angle < 180 && angle > 40)
+        {
+            angles.x = 40;
+        }
+
+        camFollow.transform.localEulerAngles = angles;
+
+        //transform.rotation = Quaternion.Euler(0, camFollow.transform.rotation.eulerAngles.y,0);
+        //camFollow.transform.localEulerAngles = new Vector3(angles.x, 0,0);
     }
 }
