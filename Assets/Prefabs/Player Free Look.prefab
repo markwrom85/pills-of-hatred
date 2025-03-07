@@ -233,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390909553752418547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16606845, y: 0.29227224, z: -0.051613867, w: 0.94039047}
+  m_LocalRotation: {x: 0.16606842, y: 0.29227236, z: -0.051613897, w: 0.94039047}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -502,7 +502,7 @@ Transform:
   m_GameObject: {fileID: 4431522607865145161}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.66, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -536,7 +536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994396059597606131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16606845, y: 0.29227227, z: -0.051613882, w: 0.94039047}
+  m_LocalRotation: {x: 0.16606843, y: 0.29227236, z: -0.051613897, w: 0.9403904}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -682,6 +682,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b7aa41f80dd34381b6b525fa06ac684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1274683843263407434}
+  id: {fileID: 1274683843263407434}
   cinemachineCamera: {fileID: 6968337099779527417}
-  playerInput: {fileID: 0}
+  orientation: {fileID: 3394119010230349979}
+  player: {fileID: 8157711737321034100}
+  playerObj: {fileID: 8307092797136462587}
+  rb: {fileID: 1547020968581616971}
+  rotationSpeed: 7
+  playerInput: {fileID: 6314957142231339191}

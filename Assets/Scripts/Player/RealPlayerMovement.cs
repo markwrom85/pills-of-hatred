@@ -41,10 +41,10 @@ public class RealPlayerMovement : MonoBehaviour
         jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
         moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
 
-        if (moveDirection != Vector3.zero)
+       /* if (moveDirection != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * moveSpeed);
-        }
+        }*/
         //transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         if (isGrounded())
