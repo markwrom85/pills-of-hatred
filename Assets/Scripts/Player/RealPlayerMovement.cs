@@ -45,7 +45,7 @@ public class RealPlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * moveSpeed);
         }
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        //transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         if (isGrounded())
         {
@@ -53,6 +53,7 @@ public class RealPlayerMovement : MonoBehaviour
         }
 
         //CameraRotation();
+
     }
 
 
@@ -74,10 +75,9 @@ public class RealPlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate(){
-       rb.AddRelativeForce(Vector3.down * gravityForce * Time.deltaTime, ForceMode.Acceleration);
-        rb.AddRelativeForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
-        rb.AddRelativeTorque(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
-
+        rb.AddForce(Vector3.down * gravityForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+        rb.AddForce(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        //rb.AddRelativeTorque(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
 
     private void CameraRotation(){
