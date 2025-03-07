@@ -25,7 +25,7 @@ public class UIController : MonoBehaviour
         player1ScoreText.text = "Player 1 Score: " + p1Score.ToString();
         if (p1Score >= 5)
         {
-            Win();
+            Win("Player 1");
         }
     }
     public void AddPlayer2Score(int point)
@@ -34,13 +34,13 @@ public class UIController : MonoBehaviour
         player2ScoreText.text = "Player 2 Score: " + p2Score.ToString();
         if (p2Score >= 5)
         {
-            Win();
+            Win("Player 2");
         }
     }
-    private void Win()
+    private void Win(string player)
     {
         winPanel.SetActive(true);
-        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Player 2 Wins!";
+        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Player" + player + "Wins!";
         sceneController.PauseGame();
     }
 }
