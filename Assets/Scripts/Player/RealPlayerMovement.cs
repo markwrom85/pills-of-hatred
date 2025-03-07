@@ -41,10 +41,10 @@ public class RealPlayerMovement : MonoBehaviour
         jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
         moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
 
-       /* if (moveDirection != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * moveSpeed);
-        }*/
+        /* if (moveDirection != Vector3.zero)
+         {
+             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * moveSpeed);
+         }*/
         //transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
         if (isGrounded())
@@ -53,6 +53,8 @@ public class RealPlayerMovement : MonoBehaviour
         }
 
         //CameraRotation();
+
+
 
     }
 
@@ -74,13 +76,15 @@ public class RealPlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate(){
-        rb.AddForce(Vector3.down * gravityForce * Time.fixedDeltaTime, ForceMode.Acceleration);
-        rb.AddForce(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+    void FixedUpdate()
+    {
+        rb.AddRelativeForce(Vector3.down * gravityForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+        rb.AddRelativeForce(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         //rb.AddRelativeTorque(moveDirection * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
 
-    private void CameraRotation(){
+    private void CameraRotation()
+    {
         cameraInput = playerInput.actions["Look"].ReadValue<Vector2>().normalized;
         camFollow.transform.rotation *= Quaternion.AngleAxis(cameraInput.x * camRotationPower, Vector3.up);
 
