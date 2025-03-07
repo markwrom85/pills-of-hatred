@@ -40,7 +40,7 @@ public class UIController : MonoBehaviour
     private void Win(string player)
     {
         winPanel.SetActive(true);
-        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Player" + player + "Wins!";
+        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + "Wins!";
         sceneController.PauseGame();
     }
 }

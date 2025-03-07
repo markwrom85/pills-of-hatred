@@ -240,15 +240,59 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "02eb485d-14d3-42da-a9cd-0175cf4ea170",
-                    "path": "<Pointer>/delta",
+                    "name": "2D Vector",
+                    "id": "0ac81ef5-fe68-4def-9b00-c1c56d23eea1",
+                    "path": "2DVector",
                     "interactions": "",
-                    "processors": "ScaleVector2(x=0.1,y=0.1)",
-                    "groups": ";WASD;IJKL",
+                    "processors": "ScaleVector2(x=100,y=100)",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "41fad796-6aae-4db3-93a2-db14d6b90217",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Look",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "d1955a8f-31c7-4937-a76a-854a31f80a6a",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "312ed22c-12b7-4ed7-832a-8b66d0b33487",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "b8b006be-9671-435d-b409-7de8b9ed2921",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
