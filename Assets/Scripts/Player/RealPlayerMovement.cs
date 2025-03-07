@@ -26,7 +26,6 @@ public class RealPlayerMovement : MonoBehaviour
     public Vector2 cameraInput;
     public float camRotationPower = 1.5f;
 
-[SerializeField] private Transform cam;
 
     void Awake()
     {
@@ -41,8 +40,6 @@ public class RealPlayerMovement : MonoBehaviour
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
         jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
         moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
-        moveDirection = new Vector3(cam.forward.x, 0, cam.forward.z) * moveInput.y;
-        moveDirection += cam.right * moveInput.x;
 
         if (moveDirection != Vector3.zero)
         {
