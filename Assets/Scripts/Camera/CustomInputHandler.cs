@@ -58,7 +58,7 @@ class CustomInputHandler : InputAxisControllerBase<CustomInputHandler.Reader>
         // IInputAxisReader interface: Called by the framework to read the input value
         public float GetValue(UnityEngine.Object context, IInputAxisOwner.AxisDescriptor.Hints hint)
         {
-            return (hint == IInputAxisOwner.AxisDescriptor.Hints.Y ? m_Value.y : m_Value.x);
+            return (hint == IInputAxisOwner.AxisDescriptor.Hints.Y ? -m_Value.y : m_Value.x);
         }
     }
 }
