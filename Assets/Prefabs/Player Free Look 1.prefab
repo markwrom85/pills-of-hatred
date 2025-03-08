@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390909553752418547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30276453, y: 0.317342, z: -0.10768803, w: 0.8922057}
+  m_LocalRotation: {x: 0.30528852, y: 0.29559848, z: -0.10030954, w: 0.89964354}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
     Range: {x: -180, y: 180}
     Wrap: 1
     Recentering:
-      Enabled: 1
+      Enabled: 0
       Wait: 1.5
       Time: 1
     Restrictions: 0
@@ -313,6 +313,37 @@ Transform:
   - {fileID: 6654060263289532024}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1241478149255609402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4358142345894052794}
+  m_Layer: 0
+  m_Name: CombatLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4358142345894052794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241478149255609402}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6226300564183902715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2991944559647625179
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,6 +534,7 @@ Transform:
   m_Children:
   - {fileID: 3934724834746750125}
   - {fileID: 3384146811933319449}
+  - {fileID: 4358142345894052794}
   m_Father: {fileID: 8157711737321034100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &3803584455582662474
@@ -620,7 +652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994396059597606131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30276453, y: 0.31734204, z: -0.10768813, w: 0.89220566}
+  m_LocalRotation: {x: 0.30528855, y: 0.2955985, z: -0.10030954, w: 0.89964354}
   m_LocalPosition: {x: 0, y: 0.651, z: -0.61097455}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -774,3 +806,4 @@ MonoBehaviour:
   rb: {fileID: 3803584455582662474}
   rotationSpeed: 7
   playerInput: {fileID: 746462869541597682}
+  combatLookAt: {fileID: 4358142345894052794}
