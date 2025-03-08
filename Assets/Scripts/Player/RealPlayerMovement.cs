@@ -16,7 +16,7 @@ public class RealPlayerMovement : MonoBehaviour
 
     public int jumpCount = 2;
 
-    private bool isGrounded()
+    /*private bool isGrounded()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f))
@@ -24,7 +24,12 @@ public class RealPlayerMovement : MonoBehaviour
             return true;
         }
         return false;
-    }
+    }*/
+
+    private bool dashInput;
+    public float dashDistance = 50f;
+    public float dashCount = 3f;
+    private float dashCooldown = 1f;
 
 
     void Awake()
@@ -37,8 +42,18 @@ public class RealPlayerMovement : MonoBehaviour
 
     void Update()
     {
-        SpeedControl();
+        //SpeedControl();
         MyInputs();
+        
+        //charge dash
+        if (dashCount < 3)
+        {
+            dashCount += dashCooldown * Time.deltaTime ;
+            if(dashCount > 3)
+            {
+                dashCount = 3;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -61,7 +76,9 @@ public class RealPlayerMovement : MonoBehaviour
                     break;
             }
         }
-        if(collision.gameObject.layer == LayerMask.NameToLayer("groundMask"))
+
+        //ground check
+        if (collision.gameObject.layer == LayerMask.NameToLayer("groundMask"))
         {
             jumpCount = 2;
         }
@@ -76,6 +93,12 @@ public class RealPlayerMovement : MonoBehaviour
         if (jumpInput && jumpCount > 0)
         {
             Jump();
+        }
+
+        dashInput = playerInput.actions["Dash"].WasPressedThisFrame();
+        if (dashInput && dashCount >= 1)
+        {
+            Dash();
         }
     }
 
@@ -108,5 +131,17 @@ public class RealPlayerMovement : MonoBehaviour
 
         rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
         jumpCount--;
+    }
+
+    private void Dash()
+    {
+        Vector3 dashDirection = orientation.forward * moveInput.y + orientation.right * moveInput.x;
+        if (dashDirection != Vector3.zero)
+        {
+            rb.AddRelativeForce(dashDirection.normalized * dashDistance, ForceMode.VelocityChange);
+        }else{
+            rb.AddRelativeForce(orientation.forward * dashDistance, ForceMode.VelocityChange);
+        }
+        dashCount--;
     }
 }
