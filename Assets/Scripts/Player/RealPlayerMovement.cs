@@ -13,6 +13,9 @@ public class RealPlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Vector3 moveDirection;
     public Transform orientation;
+
+    public int jumpCount = 2;
+
     private bool isGrounded()
     {
         RaycastHit hit;
@@ -36,7 +39,6 @@ public class RealPlayerMovement : MonoBehaviour
     {
         SpeedControl();
         MyInputs();
-        moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
     }
 
     void FixedUpdate()
@@ -59,13 +61,19 @@ public class RealPlayerMovement : MonoBehaviour
                     break;
             }
         }
+        if(collision.gameObject.layer == LayerMask.NameToLayer("groundMask"))
+        {
+            jumpCount = 2;
+        }
     }
 
     private void MyInputs()
     {
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+        moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+
         jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
-        if (isGrounded())
+        if (jumpInput && jumpCount > 0)
         {
             Jump();
         }
@@ -95,6 +103,10 @@ public class RealPlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y * (jumpInput ? 1 : 0))/*multiply by result of if jump is pressed*/, ForceMode.VelocityChange);
+        //resest y velocity
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        jumpCount--;
     }
 }
