@@ -47,7 +47,7 @@ public class UIController : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible = true;
         winPanel.SetActive(true);
-        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + "Wins!";
+        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + " Wins!";
         sceneController.PauseGame();
     }
 }
