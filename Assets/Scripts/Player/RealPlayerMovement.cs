@@ -9,9 +9,10 @@ public class RealPlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public float gravityForce = 4500f;
     private Vector2 moveInput;
+    private bool jumpInput;
     private PlayerInput playerInput;
     private Vector3 moveDirection;
-    private bool jumpInput;
+    public Transform orientation;
     private bool isGrounded()
     {
         RaycastHit hit;
@@ -22,39 +23,26 @@ public class RealPlayerMovement : MonoBehaviour
         return false;
     }
 
-    [SerializeField] private GameObject camFollow;
-    public Vector2 cameraInput;
-    public float camRotationPower = 1.5f;
-
 
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
         playerID = GetComponent<PlayerInput>().user.index + 1;
-
+        rb.freezeRotation = true;
     }
 
     void Update()
     {
-        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-        jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
+        SpeedControl();
+        MyInputs();
         moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
-
-        if (moveDirection != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), Time.deltaTime * moveSpeed);
-        }
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-        if (isGrounded())
-        {
-            rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y * (jumpInput ? 1 : 0))/*multiply by result of if jump is pressed*/, ForceMode.VelocityChange);
-        }
-
-        //CameraRotation();
     }
 
+    void FixedUpdate()
+    {
+        MovePlayer();
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -73,35 +61,40 @@ public class RealPlayerMovement : MonoBehaviour
         }
     }
 
-    void FixedUpdate(){
-       rb.AddRelativeForce(Vector3.down * gravityForce * Time.deltaTime, ForceMode.Acceleration);
-        rb.AddRelativeForce(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
-        rb.AddRelativeTorque(moveDirection * moveSpeed * Time.deltaTime, ForceMode.VelocityChange);
-
+    private void MyInputs()
+    {
+        moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+        jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
+        if (isGrounded())
+        {
+            Jump();
+        }
     }
 
-    private void CameraRotation(){
-        cameraInput = playerInput.actions["Look"].ReadValue<Vector2>().normalized;
-        camFollow.transform.rotation *= Quaternion.AngleAxis(cameraInput.x * camRotationPower, Vector3.up);
+    private void MovePlayer()
+    {
+        //player moves in direction they face
+        moveDirection = orientation.forward * moveInput.y + orientation.right * moveInput.x;
+        rb.AddRelativeForce(moveDirection.normalized * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
-        camFollow.transform.rotation *= Quaternion.AngleAxis(cameraInput.y * camRotationPower, Vector3.right);
+        //constant downward force on player
+        rb.AddRelativeForce(Vector3.down * gravityForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+    }
 
-        var angles = camFollow.transform.localEulerAngles;
-        angles.z = 0;
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
-        var angle = camFollow.transform.localEulerAngles.x;
-        if (angle > 180 && angle < 340)
+        //limit velocity if needed
+        if (flatVel.magnitude > moveSpeed)
         {
-            angles.x = 340;
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
         }
-        else if (angle < 180 && angle > 40)
-        {
-            angles.x = 40;
-        }
+    }
 
-        camFollow.transform.localEulerAngles = angles;
-
-        //transform.rotation = Quaternion.Euler(0, camFollow.transform.rotation.eulerAngles.y,0);
-        //camFollow.transform.localEulerAngles = new Vector3(angles.x, 0,0);
+    private void Jump()
+    {
+        rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y * (jumpInput ? 1 : 0))/*multiply by result of if jump is pressed*/, ForceMode.VelocityChange);
     }
 }

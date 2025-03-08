@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class UIController : MonoBehaviour
 {
+    //update this script in case separated UI is possible for each player
     [SerializeField] private TextMeshProUGUI player1ScoreText;
     [SerializeField] private TextMeshProUGUI player2ScoreText;
     [SerializeField] private GameObject winPanel;
@@ -17,6 +18,10 @@ public class UIController : MonoBehaviour
         player1ScoreText.text = "Player 1 Score: " + 0;
         player2ScoreText.text = "Player 2 Score: " + 0;
         winPanel.SetActive(false);
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+
     }
 
     public void AddPlayer1Score(int point)
@@ -39,8 +44,10 @@ public class UIController : MonoBehaviour
     }
     private void Win(string player)
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
         winPanel.SetActive(true);
-        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + "Wins!";
+        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + " Wins!";
         sceneController.PauseGame();
     }
 }
