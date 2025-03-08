@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class UIController : MonoBehaviour
 {
+    //update this script in case separated UI is possible for each player
     [SerializeField] private TextMeshProUGUI player1ScoreText;
     [SerializeField] private TextMeshProUGUI player2ScoreText;
     [SerializeField] private GameObject winPanel;

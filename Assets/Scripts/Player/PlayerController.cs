@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        ReactiveTarget otherPlayer = collision.gameObject.GetComponent<ReactiveTarget>();
+        /*ReactiveTarget otherPlayer = collision.gameObject.GetComponent<ReactiveTarget>();
         if (otherPlayer != null)
         {
             switch (playerID)
@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
                     FindFirstObjectByType<UIController>().AddPlayer2Score(1);
                     break;
             }
-        }
+        }*/
     }
 
     private IEnumerator Teleport()
