@@ -43,12 +43,6 @@ public class CameraControl : MonoBehaviour
 
     }
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     void Update()
     {
         //rotate orientation

@@ -17,6 +17,10 @@ public class UIController : MonoBehaviour
         player1ScoreText.text = "Player 1 Score: " + 0;
         player2ScoreText.text = "Player 2 Score: " + 0;
         winPanel.SetActive(false);
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        UnityEngine.Cursor.visible = false;
+
     }
 
     public void AddPlayer1Score(int point)
@@ -39,6 +43,8 @@ public class UIController : MonoBehaviour
     }
     private void Win(string player)
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
         winPanel.SetActive(true);
         winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + "Wins!";
         sceneController.PauseGame();
