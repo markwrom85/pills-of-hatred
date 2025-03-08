@@ -23,6 +23,7 @@ public class RealPlayerMovement : MonoBehaviour
         return false;
     }
 
+
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -33,6 +34,7 @@ public class RealPlayerMovement : MonoBehaviour
 
     void Update()
     {
+        SpeedControl();
         MyInputs();
         moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
     }
@@ -65,7 +67,7 @@ public class RealPlayerMovement : MonoBehaviour
         jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
         if (isGrounded())
         {
-            rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y * (jumpInput ? 1 : 0))/*multiply by result of if jump is pressed*/, ForceMode.VelocityChange);
+            Jump();
         }
     }
 
@@ -77,5 +79,22 @@ public class RealPlayerMovement : MonoBehaviour
 
         //constant downward force on player
         rb.AddRelativeForce(Vector3.down * gravityForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        //limit velocity if needed
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        }
+    }
+
+    private void Jump()
+    {
+        rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y * (jumpInput ? 1 : 0))/*multiply by result of if jump is pressed*/, ForceMode.VelocityChange);
     }
 }
