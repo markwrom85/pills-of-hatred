@@ -62,6 +62,7 @@ public class CameraControl : MonoBehaviour
         }
         else
         {
+            combatLookAt.forward = viewDir.normalized;
             Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
             orientation.forward = dirToCombatLookAt.normalized;
 

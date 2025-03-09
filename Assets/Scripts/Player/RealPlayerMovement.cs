@@ -31,7 +31,7 @@ public class RealPlayerMovement : MonoBehaviour
     public float dashCount = 3f;
     private float dashCooldown = 1f;
 
-    [SerializeField] private PlayerUI playerUI;
+    //[SerializeField] private PlayerUI playerUI;
 
     void Awake()
     {
@@ -77,7 +77,7 @@ public class RealPlayerMovement : MonoBehaviour
                     break;
             }*/
 
-            playerUI.AddPlayerScore(1);
+            //playerUI.AddPlayerScore(1);
         }
 
         //ground check
