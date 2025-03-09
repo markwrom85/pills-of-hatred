@@ -28,6 +28,8 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootTarget;
     [SerializeField] private Transform shootPoint;
+    public Vector3 shootDirection;
+    private float bulletSpeed = 20f;
 
 
     private bool canPunch = true;
@@ -46,11 +48,13 @@ public class PlayerCharacter : MonoBehaviour
 
     void Update()
     {
+        shootDirection = (shootTarget.position - transform.position).normalized;
         shootInput = playerInput.actions["Shoot"].WasPressedThisFrame();
         if (shootInput && canShoot)
         {
             StartCoroutine(Shoot());
         }
+        
 
         punchInput = playerInput.actions["Punch"].WasPressedThisFrame();
         if (punchInput && canPunch)
@@ -62,7 +66,7 @@ public class PlayerCharacter : MonoBehaviour
     public void Hurt(int damage)
     {
         health -= damage;
-        Debug.Log($"Health: {health}");
+        //Debug.Log($"Health: {health}");
     }
 
     void OnTriggerEnter(Collider other)
@@ -86,30 +90,16 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    /*private void Shoot()
-    {
-        if (shootTarget != null)
-        {
-            Vector3 direction = (shootTarget.position - transform.position).normalized;
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position + direction, Quaternion.LookRotation(direction));
-            Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
-            if (bulletRb != null)
-            {
-                bulletRb.linearVelocity = direction * 20f; // Set the bullet speed
-            }
-        }
-    }*/
-
     private IEnumerator Shoot()
     {
         if (shootTarget != null)
         {
-            Vector3 direction = (shootTarget.position - transform.position).normalized;
-            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position + direction, Quaternion.LookRotation(direction));
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position + shootDirection, Quaternion.LookRotation(shootDirection));
+            float currentSpeed = bullet.GetComponent<Fireball>().speed = bulletSpeed;
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             if (bulletRb != null)
             {
-                bulletRb.linearVelocity = direction * 20f; // Set the bullet speed
+                bulletRb.linearVelocity = shootDirection * currentSpeed; // Set the bullet speed
             }
         }
         canShoot = false;
@@ -122,7 +112,7 @@ public class PlayerCharacter : MonoBehaviour
         currentPunch = Instantiate(punchPrefab, orientation.transform);
         canPunch = false;
         yield return new WaitForSeconds(1f);
-        Destroy(currentPunch);
+        //Destroy(currentPunch);
         canPunch = true;
     }
 }

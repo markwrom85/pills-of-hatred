@@ -22,7 +22,7 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
-        if (enemy1 == null)
+        /*if (enemy1 == null)
         {
             enemy1 = Instantiate(enemyPrefab, new Vector3(5, 1.25f, 0), Quaternion.identity) as GameObject;
             OnEnemySpawn(enemy1);
@@ -31,7 +31,7 @@ public class SceneController : MonoBehaviour
         {
             enemy2 = Instantiate(enemyPrefab, new Vector3(5, 1.25f, 0), Quaternion.identity) as GameObject;
             OnEnemySpawn(enemy2);
-        }
+        }*/
     }
 
     private void OnEnemySpawn(GameObject enemy)
