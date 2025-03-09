@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390909553752418547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1594672, y: 0.37038234, z: -0.064706355, w: 0.91279805}
+  m_LocalRotation: {x: 0.168741, y: 0.19353552, z: -0.033810936, w: 0.96588165}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
     Range: {x: -10, y: 45}
     Wrap: 0
     Recentering:
-      Enabled: 1
+      Enabled: 0
       Wait: 3
       Time: 2
     Restrictions: 0
@@ -1044,7 +1044,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994396059597606131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15946722, y: 0.3703824, z: -0.064706355, w: 0.91279805}
+  m_LocalRotation: {x: 0.16874103, y: 0.19353557, z: -0.033810962, w: 0.96588165}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1350,5 +1350,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4884318030440064402, guid: a1b1ab79fdf9746fe9f26fd7a74e9d7c, type: 3}
   shootTarget: {fileID: 7612447107926391637}
   shootPoint: {fileID: 2894438789931310926}
+  shootDirection: {x: 0, y: 0, z: 0}
   punchPrefab: {fileID: 1238677477366271394, guid: 5d62f34238ac2fe47a5e42a6c3e13395, type: 3}
   orientation: {fileID: 3384146811933319449}

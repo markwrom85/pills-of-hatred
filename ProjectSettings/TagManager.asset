@@ -6,6 +6,8 @@ TagManager:
   tags:
   - arena
   - pickup
+  - bullet
+  - punch
   layers:
   - Default
   - TransparentFX

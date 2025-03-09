@@ -29,7 +29,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private Transform shootTarget;
     [SerializeField] private Transform shootPoint;
     public Vector3 shootDirection;
-    private float bulletSpeed = 20f;
+    private float bulletSpeed = 30f;
 
 
     private bool canPunch = true;
@@ -95,7 +95,8 @@ public class PlayerCharacter : MonoBehaviour
         if (shootTarget != null)
         {
             GameObject bullet = Instantiate(bulletPrefab, shootPoint.position + shootDirection, Quaternion.LookRotation(shootDirection));
-            float currentSpeed = bullet.GetComponent<Fireball>().speed = bulletSpeed;
+            bullet.GetComponent<Fireball>().speed = bulletSpeed;
+            float currentSpeed = bullet.GetComponent<Fireball>().speed;
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
             if (bulletRb != null)
             {
@@ -111,8 +112,9 @@ public class PlayerCharacter : MonoBehaviour
     {
         currentPunch = Instantiate(punchPrefab, orientation.transform);
         canPunch = false;
-        yield return new WaitForSeconds(1f);
-        //Destroy(currentPunch);
+        yield return new WaitForSeconds(.2f);
+        Destroy(currentPunch);
+        yield return new WaitForSeconds(.25f);
         canPunch = true;
     }
 }
