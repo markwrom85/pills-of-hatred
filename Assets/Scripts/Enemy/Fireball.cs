@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public float speed  = 15.0f;
+    public float speed = 15.0f;
     public int damage = 1;
     [SerializeField] private GameObject particlePrefab;
     private GameObject particle;
@@ -16,13 +16,15 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(0,0,speed*Time.deltaTime);
+        transform.Translate(0, 0, speed * Time.deltaTime);
         particle.transform.position = transform.position;
     }
 
-    void OnTriggerEnter(Collider other){
+    void OnTriggerEnter(Collider other)
+    {
         PlayerCharacter player = other.GetComponent<PlayerCharacter>();
-        if(player != null){
+        if (player != null)
+        {
             player.Hurt(damage);
         }
         Destroy(particle);

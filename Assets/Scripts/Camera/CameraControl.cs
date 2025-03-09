@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class CameraControl : MonoBehaviour
 {
     private Camera cameraObject;
-    
+
     [SerializeField] private RealPlayerMovement id;
     [SerializeField] private CinemachineCamera cinemachineCamera;
 
@@ -45,28 +45,32 @@ public class CameraControl : MonoBehaviour
 
     void Update()
     {
-        //rotate orientation
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
-
-        //rotate player object
-        if (exploreCam)
+        if (player != null)
         {
-            moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
-            Vector3 inputDir = orientation.forward * moveInput.y + orientation.right * moveInput.x;
+            //rotate orientation
+            Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+            orientation.forward = viewDir.normalized;
 
-            if (inputDir != Vector3.zero)
+            //rotate player object
+            if (exploreCam)
             {
-                playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+                moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+                Vector3 inputDir = orientation.forward * moveInput.y + orientation.right * moveInput.x;
+
+                if (inputDir != Vector3.zero)
+                {
+                    playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+                }
+            }
+            else
+            {
+                combatLookAt.forward = viewDir.normalized;
+                Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
+                orientation.forward = dirToCombatLookAt.normalized;
+
+                playerObj.forward = dirToCombatLookAt.normalized;
             }
         }
-        else
-        {
-            combatLookAt.forward = viewDir.normalized;
-            Vector3 dirToCombatLookAt = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
-            orientation.forward = dirToCombatLookAt.normalized;
 
-            playerObj.forward = dirToCombatLookAt.normalized;
-        }
     }
 }

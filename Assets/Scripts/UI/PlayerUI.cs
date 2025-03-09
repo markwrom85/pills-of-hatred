@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,9 +12,34 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     private int score;
 
+    [SerializeField] private GameObject deathPanel;
+    [SerializeField] private TextMeshProUGUI deathText;
+    public int respawnTime = 3;
+
     void Start()
     {
+        deathPanel.SetActive(false);
         scoreText.text = "Player " + id.playerID + " Score: " + 0;
+    }
+
+    void Update()
+    {
+        if (id == null)
+        {
+            deathPanel.SetActive(true);
+            StartCoroutine(RespawnCountdown());
+        }
+    }
+
+    private IEnumerator RespawnCountdown()
+    {
+        while (respawnTime > 0)
+        {
+            deathText.text = "You died! Respawning in " + respawnTime + " seconds";
+            yield return new WaitForSeconds(1);
+            respawnTime--;
+        }
+        deathPanel.SetActive(false);
     }
 
     public void AddPlayerScore(int point)
