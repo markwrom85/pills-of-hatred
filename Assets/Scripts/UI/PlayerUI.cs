@@ -10,14 +10,14 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private RealPlayerMovement id;
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    private int score;
+    private float score;
 
     void Start()
     {
         scoreText.text = "Player " + id.playerID + " Score: " + 0;
     }
 
-    public void AddPlayerScore(int point)
+    public void AddPlayerScore(float point)
     {
         score += point;
         scoreText.text = "Player " + id.playerID + " Score: " + score.ToString();

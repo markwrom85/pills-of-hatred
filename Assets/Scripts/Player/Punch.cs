@@ -6,7 +6,7 @@ public class Punch : MonoBehaviour
     private int myPlayerID;
     private Vector3 myShootDirection;
     public float bulletSpeedMult = 1.5f;
-    private int hateIncrease;
+    private float hateIncrease;
     private PlayerCharacter myPlayerCharacter;
 
     void Start()

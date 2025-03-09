@@ -9,14 +9,20 @@ public class PlayerCharacter : MonoBehaviour
     private int health;
 
     [Header("Hate System")]
-    public int hateCount = 1;
+    public float hateCount = 1f;
     private int hateMax = 100;
-    public int pickupHateIncrease = 1;
-    public int killHateIncrease = 5;
-    public int parryHateIncrease = 3;
+    public float pickupHateIncrease = 1f;
+    public float killHateIncrease = 5f;
+    public float parryHateIncrease = 3f;
 
-    private int pickupScore = 1;
-    private int killScore = 5;
+    private float pickupScore = 1f;
+    private float killScore = 5;
+
+    //hate drain
+    private bool hateDrain;
+    public float drainCooldown = 5f;
+    public float drainAmount = 2f;
+
 
     [Header("Player Components")]
     [SerializeField] private PlayerInput playerInput;
@@ -61,6 +67,17 @@ public class PlayerCharacter : MonoBehaviour
         {
             StartCoroutine(Punch());
         }
+
+        if(hateDrain)
+        {
+            hateCount -= drainAmount * Time.deltaTime;
+            if(hateCount <= 1){
+                hateDrain = false;
+                hateCount = 1;
+            }
+        }
+
+        Debug.Log("hate: " + hateCount);
     }
 
     public void Hurt(int damage)
@@ -79,7 +96,7 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    public void HateScoreCalc(int hateIncrease)
+    public void HateScoreCalc(float hateIncrease)
     {
         hateCount += hateIncrease;
 
@@ -88,6 +105,16 @@ public class PlayerCharacter : MonoBehaviour
         {
             hateCount = hateMax;
         }
+
+        //hateCount goes down
+        StartCoroutine(HateDrain());
+    }
+
+    private IEnumerator HateDrain()
+    {
+        hateDrain = false;
+        yield return new WaitForSeconds(drainCooldown);
+        hateDrain = true;
     }
 
     private IEnumerator Shoot()
