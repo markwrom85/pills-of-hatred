@@ -21,11 +21,7 @@ public class Punch : MonoBehaviour
         }
         if (other.tag == "bullet")
         {
-            myShootDirection = GetComponentInParent<PlayerCharacter>().shootDirection;
-            Rigidbody bulletRb = other.gameObject.GetComponent<Rigidbody>();
-            float currentSpeed = other.gameObject.GetComponent<Fireball>().speed;
-            Debug.Log(currentSpeed);
-            bulletRb.linearVelocity = myShootDirection * (currentSpeed * bulletSpeedMult);
+            Parry(other.gameObject);
 
             /*GameObject bullet = Instantiate(bulletPrefab, shootPoint.position + shootDirection, Quaternion.LookRotation(shootDirection));
             Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
@@ -34,5 +30,14 @@ public class Punch : MonoBehaviour
                 bulletRb.linearVelocity = shootDirection * 20f; // Set the bullet speed
             }*/
         }
+    }
+
+    private void Parry(GameObject other)
+    {
+            myShootDirection = GetComponentInParent<PlayerCharacter>().shootDirection;
+            Rigidbody bulletRb = other.gameObject.GetComponent<Rigidbody>();
+            float currentSpeed = other.gameObject.GetComponent<Fireball>().speed;
+            Debug.Log(currentSpeed);
+            bulletRb.linearVelocity = myShootDirection * (currentSpeed * bulletSpeedMult);
     }
 }
