@@ -42,8 +42,7 @@ public class PlayerCharacter : MonoBehaviour
         shootInput = playerInput.actions["Shoot"].WasPressedThisFrame();
         if (shootInput)
         {
-            Die();
-            //Shoot();
+            Shoot();
         }
     }
 
@@ -88,7 +87,4 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    private void Die(){
-        Destroy(parentObj.gameObject);
-    }
 }
