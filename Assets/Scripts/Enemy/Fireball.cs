@@ -9,12 +9,10 @@ public class Fireball : MonoBehaviour
     public float speed = 15.0f;
     public int damage = 1;
     [SerializeField] private GameObject particlePrefab;
-    private GameObject particle;
     private Rigidbody rb;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        particle = Instantiate(particlePrefab, transform.position, Quaternion.identity);
     }
 
     void Update()
@@ -31,7 +29,6 @@ public class Fireball : MonoBehaviour
             player.Hurt(damage);
         }
         if(other.tag != "punch"){
-        Destroy(particle);
         Destroy(this.gameObject);
         }
     }
