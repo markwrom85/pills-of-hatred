@@ -31,6 +31,7 @@ public class RealPlayerMovement : MonoBehaviour
     public float dashCount = 3f;
     private float dashCooldown = 1f;
 
+    [SerializeField] private PlayerUI playerUI;
 
     void Awake()
     {
@@ -66,7 +67,7 @@ public class RealPlayerMovement : MonoBehaviour
         ReactiveTarget otherPlayer = collision.gameObject.GetComponent<ReactiveTarget>();
         if (otherPlayer != null)
         {
-            switch (playerID)
+            /*switch (playerID)
             {
                 case 1:
                     FindFirstObjectByType<UIController>().AddPlayer1Score(1);
@@ -74,7 +75,9 @@ public class RealPlayerMovement : MonoBehaviour
                 case 2:
                     FindFirstObjectByType<UIController>().AddPlayer2Score(1);
                     break;
-            }
+            }*/
+
+            playerUI.AddPlayerScore(1);
         }
 
         //ground check

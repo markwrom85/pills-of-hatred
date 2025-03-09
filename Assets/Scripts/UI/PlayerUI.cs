@@ -13,16 +13,16 @@ public class PlayerUI : MonoBehaviour
 
     void Start()
     {
-        scoreText.text = "Player" + id.playerID + "Score: " + 0;
+        scoreText.text = "Player " + id.playerID + " Score: " + 0;
     }
 
-    /*public void AddPlayerScore(int point)
+    public void AddPlayerScore(int point)
     {
         score += point;
-        scoreText.text = "Player" + id.playerID + "Score: " + score.ToString();
+        scoreText.text = "Player " + id.playerID + " Score: " + score.ToString();
         if (score >= 5)
         {
-            FindFirstObjectByType<UIController>().Win("Player" + id.playerID);
+            FindFirstObjectByType<UIController>().Win("Player " + id.playerID);
         }
-    }*/
+    }
 }
