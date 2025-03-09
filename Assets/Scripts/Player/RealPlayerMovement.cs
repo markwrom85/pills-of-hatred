@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -138,6 +139,7 @@ public class RealPlayerMovement : MonoBehaviour
 
     private void Dash()
     {
+        GetComponent<PlayerCharacter>().isInvincible = true;
         Vector3 dashDirection = orientation.forward * moveInput.y + orientation.right * moveInput.x;
         if (dashDirection != Vector3.zero)
         {

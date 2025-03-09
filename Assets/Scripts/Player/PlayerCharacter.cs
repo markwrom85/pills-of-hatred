@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerCharacter : MonoBehaviour
 {
     private int health;
+    public bool isInvincible;
 
     [Header("Hate System")]
     public float hateCount = 1f;
@@ -82,8 +83,20 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Hurt(int damage)
     {
-        health -= damage;
+        if(!isInvincible)
+        {
+            health -= damage;
+        }
+        else{
+            StartCoroutine(InvincibleCooldown());
+        }
         //Debug.Log($"Health: {health}");
+    }
+
+    private IEnumerator InvincibleCooldown(){
+        isInvincible = true;
+        yield return new WaitForSeconds(.5f);
+        isInvincible = false;
     }
 
     void OnTriggerEnter(Collider other)
