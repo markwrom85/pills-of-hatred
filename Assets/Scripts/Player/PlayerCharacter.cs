@@ -20,29 +20,42 @@ public class PlayerCharacter : MonoBehaviour
 
     [Header("Player Components")]
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PlayerUI playerUI;
+
     private bool shootInput;
+    private bool canShoot = true;
+    [Header("Shoot Components")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootTarget;
     [SerializeField] private Transform shootPoint;
-    private RealPlayerMovement parentObj;
 
-    [SerializeField] private PlayerUI playerUI;
+
+    private bool canPunch = true;
+    [Header("Punch Components")]
+    [SerializeField] private GameObject punchPrefab;
+    [SerializeField] private Transform orientation;
+    private GameObject currentPunch;
+    private bool punchInput;
+
 
     void Start()
     {
         health = 5;
         hateCount = 1;
-
-        parentObj = GetComponentInParent<RealPlayerMovement>();
-        Debug.Log(parentObj);
     }
 
     void Update()
     {
         shootInput = playerInput.actions["Shoot"].WasPressedThisFrame();
-        if (shootInput)
+        if (shootInput && canShoot)
         {
-            Shoot();
+            StartCoroutine(Shoot());
+        }
+
+        punchInput = playerInput.actions["Punch"].WasPressedThisFrame();
+        if (punchInput && canPunch)
+        {
+            StartCoroutine(Punch());
         }
     }
 
@@ -73,7 +86,7 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    /*private void Shoot()
     {
         if (shootTarget != null)
         {
@@ -85,6 +98,31 @@ public class PlayerCharacter : MonoBehaviour
                 bulletRb.linearVelocity = direction * 20f; // Set the bullet speed
             }
         }
+    }*/
+
+    private IEnumerator Shoot()
+    {
+        if (shootTarget != null)
+        {
+            Vector3 direction = (shootTarget.position - transform.position).normalized;
+            GameObject bullet = Instantiate(bulletPrefab, shootPoint.position + direction, Quaternion.LookRotation(direction));
+            Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();
+            if (bulletRb != null)
+            {
+                bulletRb.linearVelocity = direction * 20f; // Set the bullet speed
+            }
+        }
+        canShoot = false;
+        yield return new WaitForSeconds(1f);
+        canShoot = true;
     }
 
+    private IEnumerator Punch()
+    {
+        currentPunch = Instantiate(punchPrefab, orientation.transform);
+        canPunch = false;
+        yield return new WaitForSeconds(1f);
+        Destroy(currentPunch);
+        canPunch = true;
+    }
 }

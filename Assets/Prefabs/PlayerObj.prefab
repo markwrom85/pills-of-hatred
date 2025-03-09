@@ -105,7 +105,6 @@ GameObject:
   - component: {fileID: 7794482527353706656}
   - component: {fileID: 5977324924818692885}
   - component: {fileID: 8295117263069121771}
-  - component: {fileID: 8811531783352516012}
   m_Layer: 0
   m_Name: PlayerObj
   m_TagString: Untagged
@@ -206,27 +205,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8811531783352516012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6042517886474589162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfc8d637653824f7a8fe892c3820d46c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hateCount: 1
-  pickupHateIncrease: 1
-  killHateIncrease: 5
-  parryHateIncrease: 3
-  playerInput: {fileID: 1764473984580562190}
-  bulletPrefab: {fileID: 4884318030440064402, guid: a1b1ab79fdf9746fe9f26fd7a74e9d7c, type: 3}
-  shootTarget: {fileID: 0}
-  shootPoint: {fileID: 4182805039274492850}
-  playerUI: {fileID: 0}
 --- !u!1 &7406381131842150690
 GameObject:
   m_ObjectHideFlags: 0
