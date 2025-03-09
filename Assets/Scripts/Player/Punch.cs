@@ -6,9 +6,14 @@ public class Punch : MonoBehaviour
     private int myPlayerID;
     private Vector3 myShootDirection;
     public float bulletSpeedMult = 1.5f;
+    private int hateIncrease;
+    private PlayerCharacter myPlayerCharacter;
+
     void Start()
     {
         myPlayerID = GetComponentInParent<RealPlayerMovement>().playerID;
+        myPlayerCharacter = GetComponentInParent<PlayerCharacter>();
+        hateIncrease = myPlayerCharacter.parryHateIncrease;
     }
     void OnTriggerEnter(Collider other)
     {
@@ -28,7 +33,7 @@ public class Punch : MonoBehaviour
     private void Parry(GameObject other)
     {
         //make sure bullet is parried in the right direction
-        myShootDirection = GetComponentInParent<PlayerCharacter>().shootDirection;
+        myShootDirection = myPlayerCharacter.shootDirection;
 
         //alter speed of bullet
         other.gameObject.GetComponent<Fireball>().speed *= bulletSpeedMult;
@@ -37,5 +42,8 @@ public class Punch : MonoBehaviour
         //bullet is parried in look direction and sped up
         Rigidbody bulletRb = other.gameObject.GetComponent<Rigidbody>();
         bulletRb.linearVelocity = myShootDirection * currentSpeed;
+
+        //add to hate meter
+        myPlayerCharacter.HateScoreCalc(hateIncrease);
     }
 }

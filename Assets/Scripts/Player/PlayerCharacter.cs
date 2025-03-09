@@ -79,7 +79,7 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    private void HateScoreCalc(int hateIncrease)
+    public void HateScoreCalc(int hateIncrease)
     {
         hateCount += hateIncrease;
 
