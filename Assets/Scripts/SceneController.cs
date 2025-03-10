@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using Unity.VisualScripting;
 
 public class SceneController : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public class SceneController : MonoBehaviour
     private GameObject player1;
     private GameObject player2;
 
-    
+
     public bool player1HateCalculated = false;
     public bool player2HateCalculated = false;
 
@@ -23,8 +25,16 @@ public class SceneController : MonoBehaviour
     private GameObject item2;
     private GameObject item3;
 
+    //UI stuff
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private TextMeshProUGUI timeText;
+    private float p1Score;
+    private float p2Score;
+
+
     void Start()
     {
+
         player1 = Instantiate(playerPrefab, player1Spawn.position, Quaternion.identity);
         player1.GetComponentInChildren<RealPlayerMovement>().playerID = 1;
         player1.GetComponentInChildren<Renderer>().material.color = Color.cyan;
@@ -34,11 +44,18 @@ public class SceneController : MonoBehaviour
         player2.GetComponentInChildren<Renderer>().material.color = Color.magenta;
 
 
+        //UI stuff
+        winPanel.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         ResumeGame();
     }
 
     void Update()
     {
+
         ItemSpawn();
 
         //checks if player has been killed, increases opposite player hate count by amount specified in PlayerCharacter
@@ -105,4 +122,17 @@ public class SceneController : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+    //UI Stuff
+    public void Win(string player)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+
+        winPanel.SetActive(true);
+        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + " Wins!";
+        PauseGame();
+    }
+
 }

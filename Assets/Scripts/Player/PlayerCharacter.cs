@@ -18,8 +18,8 @@ public class PlayerCharacter : MonoBehaviour
     public float hateCount = 1f;
     private int hateMax = 100;
     public float pickupHateIncrease = 5f;
-    public float killHateIncrease = 15f;
-    public float parryHateIncrease = 10f;
+    public float killHateIncrease = 10f;
+    public float parryHateIncrease = 15f;
     public Slider hateSlider;
 
     private float pickupScore = 1f;
@@ -42,7 +42,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private Transform shootTarget;
     [SerializeField] private Transform shootPoint;
     public Vector3 shootDirection;
-    private float bulletSpeed = 30f;
+    private float bulletSpeed = 60f;
 
 
     private bool canPunch = true;

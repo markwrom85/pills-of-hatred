@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390909553752418547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16814329, y: 0.20988871, z: -0.03666788, w: 0.9624604}
+  m_LocalRotation: {x: 0.1594672, y: 0.37038195, z: -0.06470628, w: 0.91279817}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1886,7 +1886,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994396059597606131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16814329, y: 0.2098887, z: -0.036667876, w: 0.9624604}
+  m_LocalRotation: {x: 0.1594672, y: 0.37038198, z: -0.06470629, w: 0.9127982}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2199,8 +2199,8 @@ MonoBehaviour:
   isInvincible: 0
   hateCount: 1
   pickupHateIncrease: 5
-  killHateIncrease: 15
-  parryHateIncrease: 10
+  killHateIncrease: 10
+  parryHateIncrease: 15
   hateSlider: {fileID: 5255814549595269710}
   drainCooldown: 5
   drainAmount: 5

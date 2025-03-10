@@ -21,9 +21,11 @@ public class PlayerUI : MonoBehaviour
     {
         score += point;
         scoreText.text = "Player " + id.playerID + " Score: " + score.ToString();
+        
+        //test stuff
         if (score >= 5)
         {
-            FindFirstObjectByType<UIController>().Win("Player " + id.playerID);
+            FindFirstObjectByType<SceneController>().Win("Player " + id.playerID);
         }
     }
 }
