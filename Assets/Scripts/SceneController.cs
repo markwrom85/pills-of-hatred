@@ -51,7 +51,7 @@ public class SceneController : MonoBehaviour
         if (!player2.GetComponentInChildren<RealPlayerMovement>().canMove && !player1HateCalculated)
         {
             player1.GetComponentInChildren<PlayerCharacter>().HateScoreCalc(player1.GetComponentInChildren<PlayerCharacter>().killHateIncrease);
-            player2HateCalculated = false;
+            player1HateCalculated = true;
         }
     }
 

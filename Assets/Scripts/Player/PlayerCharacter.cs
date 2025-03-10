@@ -17,9 +17,9 @@ public class PlayerCharacter : MonoBehaviour
     [Header("Hate System")]
     public float hateCount = 1f;
     private int hateMax = 100;
-    public float pickupHateIncrease = 1f;
-    public float killHateIncrease = 5f;
-    public float parryHateIncrease = 3f;
+    public float pickupHateIncrease = 5f;
+    public float killHateIncrease = 15f;
+    public float parryHateIncrease = 10f;
     public Slider hateSlider;
 
     private float pickupScore = 1f;
@@ -28,7 +28,7 @@ public class PlayerCharacter : MonoBehaviour
     //hate drain
     private bool hateDrain;
     public float drainCooldown = 5f;
-    public float drainAmount = 2f;
+    public float drainAmount = 5f;
 
 
     [Header("Player Components")]
@@ -125,6 +125,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void HateScoreCalc(float hateIncrease)
     {
+        Debug.Log("HateCalc called to increase by " + hateIncrease);
         hateCount += hateIncrease;
         hateSlider.value = hateCount;
 

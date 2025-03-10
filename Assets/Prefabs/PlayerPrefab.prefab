@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390909553752418547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15946719, y: 0.37038234, z: -0.06470635, w: 0.91279805}
+  m_LocalRotation: {x: 0.16814329, y: 0.20988871, z: -0.03666788, w: 0.9624604}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1886,7 +1886,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994396059597606131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15946722, y: 0.3703824, z: -0.06470636, w: 0.91279805}
+  m_LocalRotation: {x: 0.16814329, y: 0.2098887, z: -0.036667876, w: 0.9624604}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2198,12 +2198,12 @@ MonoBehaviour:
   healthSlider: {fileID: 5316251604534676954}
   isInvincible: 0
   hateCount: 1
-  pickupHateIncrease: 1
-  killHateIncrease: 5
-  parryHateIncrease: 3
+  pickupHateIncrease: 5
+  killHateIncrease: 15
+  parryHateIncrease: 10
   hateSlider: {fileID: 5255814549595269710}
   drainCooldown: 5
-  drainAmount: 2
+  drainAmount: 5
   playerInput: {fileID: 746462869541597682}
   playerUI: {fileID: 6314433393130256598}
   bulletPrefab: {fileID: 4884318030440064402, guid: a1b1ab79fdf9746fe9f26fd7a74e9d7c, type: 3}
