@@ -29,6 +29,7 @@ public class PlayerCharacter : MonoBehaviour
     private bool hateDrain;
     public float drainCooldown = 5f;
     public float drainAmount = 5f;
+    private Coroutine hateDrainCoroutine;
 
 
     [Header("Player Components")]
@@ -125,6 +126,10 @@ public class PlayerCharacter : MonoBehaviour
 
     public void HateScoreCalc(float hateIncrease)
     {
+        if(hateDrainCoroutine != null){
+        StopCoroutine(hateDrainCoroutine);
+
+        }
         Debug.Log("HateCalc called to increase by " + hateIncrease);
         hateCount += hateIncrease;
         hateSlider.value = hateCount;
@@ -137,7 +142,7 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         //hateCount goes down
-        StartCoroutine(HateDrain());
+        hateDrainCoroutine = StartCoroutine(HateDrain());
     }
 
     private IEnumerator HateDrain()

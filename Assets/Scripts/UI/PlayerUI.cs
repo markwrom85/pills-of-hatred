@@ -10,7 +10,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private RealPlayerMovement id;
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    private float score;
+    public float score;
 
     void Start()
     {
@@ -20,12 +20,14 @@ public class PlayerUI : MonoBehaviour
     public void AddPlayerScore(float point)
     {
         score += point;
-        scoreText.text = "Player " + id.playerID + " Score: " + score.ToString();
-        
+        //converts to int
+        int intScore = Mathf.RoundToInt(score);
+        scoreText.text = "Player " + id.playerID + " Score: " + intScore.ToString();
+
         //test stuff
-        if (score >= 5)
+        /*if (score >= 5)
         {
             FindFirstObjectByType<SceneController>().Win("Player " + id.playerID);
-        }
+        }*/
     }
 }

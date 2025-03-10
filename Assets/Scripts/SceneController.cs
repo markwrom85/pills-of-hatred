@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
+using System.Collections;
 
 public class SceneController : MonoBehaviour
 {
@@ -21,15 +23,17 @@ public class SceneController : MonoBehaviour
     private int item1Spot;
     private int item2Spot;
     private int item3Spot;
+    private int item4Spot;
     private GameObject item1;
     private GameObject item2;
     private GameObject item3;
+    private GameObject item4;
 
     //UI stuff
     [SerializeField] private GameObject winPanel;
+    [SerializeField] private TextMeshProUGUI winText;
     [SerializeField] private TextMeshProUGUI timeText;
-    private float p1Score;
-    private float p2Score;
+    private float timeLeft = 120;
 
 
     void Start()
@@ -46,6 +50,8 @@ public class SceneController : MonoBehaviour
 
         //UI stuff
         winPanel.SetActive(false);
+        timeText.text = timeLeft.ToString();
+        StartCoroutine(Timer());
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -55,7 +61,13 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
+        if (timeLeft <= 0)
+        {
+            Debug.Log("Time done");
+            Win(player1.GetComponentInChildren<PlayerUI>().score, player2.GetComponentInChildren<PlayerUI>().score);
+        }
 
+        //spawn new items when old ones are grabbed
         ItemSpawn();
 
         //checks if player has been killed, increases opposite player hate count by amount specified in PlayerCharacter
@@ -78,7 +90,7 @@ public class SceneController : MonoBehaviour
         if (item1 == null)
         {
             item1Spot = Random.Range(0, 10);
-            if ((item1Spot == item2Spot) || (item1Spot == item3Spot))
+            if ((item1Spot == item2Spot) || (item1Spot == item3Spot) || (item1Spot == item4Spot))
             {
                 item1Spot = Random.Range(0, 10);
             }
@@ -89,7 +101,7 @@ public class SceneController : MonoBehaviour
         if (item2 == null)
         {
             item2Spot = Random.Range(0, 10);
-            if ((item2Spot == item3Spot) || (item2Spot == item1Spot))
+            if ((item2Spot == item3Spot) || (item2Spot == item1Spot) || (item2Spot == item4Spot))
             {
                 item2Spot = Random.Range(0, 10);
             }
@@ -100,12 +112,22 @@ public class SceneController : MonoBehaviour
         if (item3 == null)
         {
             item3Spot = Random.Range(0, 10);
-            if ((item3Spot == item1Spot) || (item3Spot == item2Spot))
+            if ((item3Spot == item1Spot) || (item3Spot == item2Spot) || (item3Spot == item4Spot))
             {
                 item3Spot = Random.Range(0, 10);
             }
 
             item3 = Instantiate(itemPrefab, itemSpawns[item3Spot]);
+        }
+        if (item4 == null)
+        {
+            item4Spot = Random.Range(0, 10);
+            if (item4Spot == item1Spot || item4Spot == item2Spot || item4Spot == item3Spot)
+            {
+                item4Spot = Random.Range(0, 10);
+            }
+
+            item4 = Instantiate(itemPrefab, itemSpawns[item4Spot]);
         }
     }
 
@@ -123,15 +145,37 @@ public class SceneController : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    private IEnumerator Timer()
+    {   
+        while(timeLeft > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            timeLeft--;
+            timeText.text = timeLeft.ToString();
+        }
+    }
+
     //UI Stuff
-    public void Win(string player)
+    public void Win(float p1Score, float p2Score)
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        if (p1Score > p2Score)
+        {
+            winText.text = "Player 1 Wins!";
+        }
+        else if (p1Score < p2Score)
+        {
+            winText.text = "Player 2 Wins!";
+        }
+        else
+        {
+            winText.text = "Draw!";
+        }
 
         winPanel.SetActive(true);
-        winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + " Wins!";
+        //winPanel.GetComponentInChildren<TextMeshProUGUI>().text = player + " Wins!";
         PauseGame();
     }
 
