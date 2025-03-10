@@ -42,6 +42,7 @@ public class RealPlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerID = GetComponent<PlayerInput>().user.index + 1;
         rb.freezeRotation = true;
+        jumpCount = 2;
     }
 
     void Update()
