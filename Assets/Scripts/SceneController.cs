@@ -4,9 +4,9 @@ public class SceneController : MonoBehaviour
 {
     public GameObject playerPrefab;
     public GameObject enemyPrefab;
-    private GameObject enemy1;
-    private GameObject enemy2;
-    
+    private GameObject player1;
+    private GameObject player2;
+
     public Transform player1Spawn;
     public Transform player2Spawn;
 
@@ -21,11 +21,11 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        GameObject player1 = Instantiate(playerPrefab, player1Spawn.position, Quaternion.identity);
+        player1 = Instantiate(playerPrefab, player1Spawn.position, Quaternion.identity);
         player1.GetComponentInChildren<RealPlayerMovement>().playerID = 1;
         player1.GetComponentInChildren<Renderer>().material.color = Color.cyan;
 
-        GameObject player2 = Instantiate(playerPrefab, player2Spawn.position, Quaternion.identity);
+        player2 = Instantiate(playerPrefab, player2Spawn.position, Quaternion.identity);
         player2.GetComponentInChildren<RealPlayerMovement>().playerID = 2;
         player2.GetComponentInChildren<Renderer>().material.color = Color.magenta;
 
@@ -37,16 +37,15 @@ public class SceneController : MonoBehaviour
     {
         ItemSpawn();
 
-        /*if (enemy1 == null)
+        //checks if player has been killed, increases opposite player hate count by amount specified in PlayerCharacter
+        if (!player1.GetComponentInChildren<RealPlayerMovement>().canMove)
         {
-            enemy1 = Instantiate(enemyPrefab, new Vector3(5, 1.25f, 0), Quaternion.identity) as GameObject;
-            OnEnemySpawn(enemy1);
+            player2.GetComponentInChildren<PlayerCharacter>().HateScoreCalc(player2.GetComponentInChildren<PlayerCharacter>().killHateIncrease);
         }
-        if (enemy2 == null)
+        if (!player2.GetComponentInChildren<RealPlayerMovement>().canMove)
         {
-            enemy2 = Instantiate(enemyPrefab, new Vector3(5, 1.25f, 0), Quaternion.identity) as GameObject;
-            OnEnemySpawn(enemy2);
-        }*/
+            player1.GetComponentInChildren<PlayerCharacter>().HateScoreCalc(player1.GetComponentInChildren<PlayerCharacter>().killHateIncrease);
+        }
     }
 
     private void ItemSpawn()
@@ -62,7 +61,7 @@ public class SceneController : MonoBehaviour
 
             item1 = Instantiate(itemPrefab, itemSpawns[item1Spot]);
         }
-        
+
         if (item2 == null)
         {
             item2Spot = Random.Range(0, 10);
@@ -73,7 +72,7 @@ public class SceneController : MonoBehaviour
 
             item2 = Instantiate(itemPrefab, itemSpawns[item2Spot]);
         }
-        
+
         if (item3 == null)
         {
             item3Spot = Random.Range(0, 10);
@@ -84,18 +83,6 @@ public class SceneController : MonoBehaviour
 
             item3 = Instantiate(itemPrefab, itemSpawns[item3Spot]);
         }
-    }
-
-    private void OnEnemySpawn(GameObject enemy)
-    {
-        enemy.transform.position = new Vector3(0, 1, 0);
-        float angle = Random.Range(0, 360);
-        enemy.transform.Rotate(0, angle, 0);
-        /*float height = Random.Range(1.0f, 5.0f);
-        enemy.transform.localScale = new Vector3(1, height, 1);
-        Color randomColor = new Color(Random.value, Random.value, Random.value);
-        Renderer renderer = enemy.GetComponentInChildren<Renderer>();
-        renderer.material.color = randomColor;*/
     }
 
     public void RestartGame()
