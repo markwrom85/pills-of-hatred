@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,20 +10,24 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private RealPlayerMovement id;
 
     [SerializeField] private TextMeshProUGUI scoreText;
-    private int score;
+    public float score;
 
     void Start()
     {
-        scoreText.text = "Player" + id.playerID + "Score: " + 0;
+        scoreText.text = "Player " + id.playerID + " Score: " + 0;
     }
 
-    /*public void AddPlayerScore(int point)
+    public void AddPlayerScore(float point)
     {
         score += point;
-        scoreText.text = "Player" + id.playerID + "Score: " + score.ToString();
-        if (score >= 5)
+        //converts to int
+        int intScore = Mathf.RoundToInt(score);
+        scoreText.text = "Player " + id.playerID + " Score: " + intScore.ToString();
+
+        //test stuff
+        /*if (score >= 5)
         {
-            FindFirstObjectByType<UIController>().Win("Player" + id.playerID);
-        }
-    }*/
+            FindFirstObjectByType<SceneController>().Win("Player " + id.playerID);
+        }*/
+    }
 }

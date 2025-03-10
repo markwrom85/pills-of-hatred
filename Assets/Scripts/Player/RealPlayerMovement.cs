@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,10 @@ public class RealPlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Vector3 moveDirection;
     public Transform orientation;
-    private bool isGrounded()
+
+    public int jumpCount = 2;
+
+    /*private bool isGrounded()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f))
@@ -21,8 +25,16 @@ public class RealPlayerMovement : MonoBehaviour
             return true;
         }
         return false;
-    }
+    }*/
 
+    private bool dashInput;
+    public float dashDistance = 50f;
+    public float dashCount = 3f;
+    private float dashCooldown = 1f;
+
+    //[SerializeField] private PlayerUI playerUI;
+
+    public bool canMove = true;
 
     void Awake()
     {
@@ -30,13 +42,26 @@ public class RealPlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerID = GetComponent<PlayerInput>().user.index + 1;
         rb.freezeRotation = true;
+        jumpCount = 2;
     }
 
     void Update()
     {
-        SpeedControl();
-        MyInputs();
-        moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        //SpeedControl();
+        if(canMove)
+        {
+            MyInputs();
+        }
+        
+        //charge dash
+        if (dashCount < 3)
+        {
+            dashCount += dashCooldown * Time.deltaTime ;
+            if(dashCount > 3)
+            {
+                dashCount = 3;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -49,7 +74,7 @@ public class RealPlayerMovement : MonoBehaviour
         ReactiveTarget otherPlayer = collision.gameObject.GetComponent<ReactiveTarget>();
         if (otherPlayer != null)
         {
-            switch (playerID)
+            /*switch (playerID)
             {
                 case 1:
                     FindFirstObjectByType<UIController>().AddPlayer1Score(1);
@@ -57,17 +82,33 @@ public class RealPlayerMovement : MonoBehaviour
                 case 2:
                     FindFirstObjectByType<UIController>().AddPlayer2Score(1);
                     break;
-            }
+            }*/
+
+            //playerUI.AddPlayerScore(1);
+        }
+
+        //ground check
+        if (collision.gameObject.layer == LayerMask.NameToLayer("groundMask"))
+        {
+            jumpCount = 2;
         }
     }
 
     private void MyInputs()
     {
         moveInput = playerInput.actions["Move"].ReadValue<Vector2>();
+        moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+
         jumpInput = playerInput.actions["Jump"].WasPressedThisFrame();
-        if (isGrounded())
+        if (jumpInput && jumpCount > 0)
         {
             Jump();
+        }
+
+        dashInput = playerInput.actions["Dash"].WasPressedThisFrame();
+        if (dashInput && dashCount >= 1)
+        {
+            Dash();
         }
     }
 
@@ -95,6 +136,23 @@ public class RealPlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y * (jumpInput ? 1 : 0))/*multiply by result of if jump is pressed*/, ForceMode.VelocityChange);
+        //resest y velocity
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        rb.AddRelativeForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        jumpCount--;
+    }
+
+    private void Dash()
+    {
+        GetComponent<PlayerCharacter>().isInvincible = true;
+        Vector3 dashDirection = orientation.forward * moveInput.y + orientation.right * moveInput.x;
+        if (dashDirection != Vector3.zero)
+        {
+            rb.AddRelativeForce(dashDirection.normalized * dashDistance, ForceMode.VelocityChange);
+        }else{
+            rb.AddRelativeForce(orientation.forward * dashDistance, ForceMode.VelocityChange);
+        }
+        dashCount--;
     }
 }

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3961304027814488419}
   m_Layer: 0
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,8 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  damage: 1
-  particlePrefab: {fileID: 5539092935516868286, guid: 314cfc64972a448848bfbb5a73509265, type: 3}
+  damage: 2
 --- !u!54 &3961304027814488419
 Rigidbody:
   m_ObjectHideFlags: 0

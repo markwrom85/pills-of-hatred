@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - arena
+  - pickup
+  - bullet
+  - punch
   layers:
   - Default
   - TransparentFX
