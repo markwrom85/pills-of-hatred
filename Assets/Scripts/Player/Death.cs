@@ -49,7 +49,9 @@ public class Death : MonoBehaviour
         
         //reset health and hate to the start
         playerCharacter.hateCount = 1;
+        playerCharacter.hateSlider.value = playerCharacter.hateCount;
         playerCharacter.health = playerCharacter.maxHealth;
+        playerCharacter.healthSlider.value = playerCharacter.health;
 
     }
 }
