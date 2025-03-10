@@ -73,12 +73,10 @@ public class PlayerCharacter : MonoBehaviour
         {
             hateCount -= drainAmount * Time.deltaTime;
             if(hateCount <= 1){
-                hateDrain = false;
                 hateCount = 1;
+                hateDrain = false;
             }
         }
-
-        Debug.Log("hate: " + hateCount);
     }
 
     public void Hurt(int damage)

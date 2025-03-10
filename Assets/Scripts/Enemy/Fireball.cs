@@ -13,16 +13,18 @@ public class Fireball : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        StartCoroutine(DestroyFireball());
     }
 
-    void Update()
-    {
-        /*transform.Translate(0, 0, speed * Time.deltaTime);
-        particle.transform.position = transform.position;*/
+    private IEnumerator DestroyFireball(){
+        yield return new WaitForSeconds(15f);
+        Destroy(this.gameObject);
     }
 
     void OnTriggerEnter(Collider other)
     {
+        StopCoroutine(DestroyFireball());
+        StartCoroutine(DestroyFireball());
         PlayerCharacter player = other.GetComponentInParent<PlayerCharacter>();
         if (player != null)
         {
