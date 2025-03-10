@@ -9,6 +9,15 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Transform player1Spawn;
     [SerializeField] private Transform player2Spawn;
 
+    [SerializeField] private Transform[] itemSpawns;
+    [SerializeField] private GameObject itemPrefab;
+    private int item1Spot;
+    private int item2Spot;
+    private int item3Spot;
+    private GameObject item1;
+    private GameObject item2;
+    private GameObject item3;
+
     void Start()
     {
         GameObject player1 = Instantiate(playerPrefab, player1Spawn.position, Quaternion.identity);
@@ -25,6 +34,8 @@ public class SceneController : MonoBehaviour
 
     void Update()
     {
+        ItemSpawn();
+
         /*if (enemy1 == null)
         {
             enemy1 = Instantiate(enemyPrefab, new Vector3(5, 1.25f, 0), Quaternion.identity) as GameObject;
@@ -35,6 +46,43 @@ public class SceneController : MonoBehaviour
             enemy2 = Instantiate(enemyPrefab, new Vector3(5, 1.25f, 0), Quaternion.identity) as GameObject;
             OnEnemySpawn(enemy2);
         }*/
+    }
+
+    private void ItemSpawn()
+    {
+        //pretty bad but it works
+        if (item1 == null)
+        {
+            item1Spot = Random.Range(0, 10);
+            if ((item1Spot == item2Spot) || (item1Spot == item3Spot))
+            {
+                item1Spot = Random.Range(0, 10);
+            }
+
+            item1 = Instantiate(itemPrefab, itemSpawns[item1Spot]);
+        }
+        
+        if (item2 == null)
+        {
+            item2Spot = Random.Range(0, 10);
+            if ((item2Spot == item3Spot) || (item2Spot == item1Spot))
+            {
+                item2Spot = Random.Range(0, 10);
+            }
+
+            item2 = Instantiate(itemPrefab, itemSpawns[item2Spot]);
+        }
+        
+        if (item3 == null)
+        {
+            item3Spot = Random.Range(0, 10);
+            if ((item3Spot == item1Spot) || (item3Spot == item2Spot))
+            {
+                item3Spot = Random.Range(0, 10);
+            }
+
+            item3 = Instantiate(itemPrefab, itemSpawns[item3Spot]);
+        }
     }
 
     private void OnEnemySpawn(GameObject enemy)
@@ -49,14 +97,17 @@ public class SceneController : MonoBehaviour
         renderer.material.color = randomColor;*/
     }
 
-    public void RestartGame(){
+    public void RestartGame()
+    {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void PauseGame(){
+    public void PauseGame()
+    {
         Time.timeScale = 0;
     }
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
         Time.timeScale = 1;
     }
 }
