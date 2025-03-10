@@ -7,6 +7,10 @@ public class SceneController : MonoBehaviour
     private GameObject player1;
     private GameObject player2;
 
+    
+    public bool player1HateCalculated = false;
+    public bool player2HateCalculated = false;
+
     public Transform player1Spawn;
     public Transform player2Spawn;
 
@@ -38,13 +42,16 @@ public class SceneController : MonoBehaviour
         ItemSpawn();
 
         //checks if player has been killed, increases opposite player hate count by amount specified in PlayerCharacter
-        if (!player1.GetComponentInChildren<RealPlayerMovement>().canMove)
+        if (!player1.GetComponentInChildren<RealPlayerMovement>().canMove && !player2HateCalculated)
         {
             player2.GetComponentInChildren<PlayerCharacter>().HateScoreCalc(player2.GetComponentInChildren<PlayerCharacter>().killHateIncrease);
+            player2HateCalculated = true;
         }
-        if (!player2.GetComponentInChildren<RealPlayerMovement>().canMove)
+
+        if (!player2.GetComponentInChildren<RealPlayerMovement>().canMove && !player1HateCalculated)
         {
             player1.GetComponentInChildren<PlayerCharacter>().HateScoreCalc(player1.GetComponentInChildren<PlayerCharacter>().killHateIncrease);
+            player2HateCalculated = false;
         }
     }
 

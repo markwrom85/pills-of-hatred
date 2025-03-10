@@ -37,9 +37,11 @@ public class Death : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if(realPlayerMovement.playerID == 1){
             player.transform.position = sceneController.player1Spawn.position;
+            sceneController.player2HateCalculated = false;
         }else
         {
             player.transform.position = sceneController.player2Spawn.position;
+            sceneController.player1HateCalculated = false;
         }
         playerMesh.enabled = true;
         gunMesh.SetActive(true);
@@ -47,7 +49,7 @@ public class Death : MonoBehaviour
         
         //reset health and hate to the start
         playerCharacter.hateCount = 1;
-        playerCharacter.health = 5;
+        playerCharacter.health = playerCharacter.maxHealth;
 
     }
 }

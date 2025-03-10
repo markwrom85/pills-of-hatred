@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    [Header("Health")]
     public int health;
+    public int maxHealth = 5;
+    public Slider healthSlider;
+
     public bool isInvincible;
 
     [Header("Hate System")]
@@ -15,6 +20,7 @@ public class PlayerCharacter : MonoBehaviour
     public float pickupHateIncrease = 1f;
     public float killHateIncrease = 5f;
     public float parryHateIncrease = 3f;
+    public Slider hateSlider;
 
     private float pickupScore = 1f;
     private float killScore = 5;
@@ -49,8 +55,13 @@ public class PlayerCharacter : MonoBehaviour
 
     void Start()
     {
-        health = 5;
+        health = maxHealth;
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
+
         hateCount = 1;
+        hateSlider.maxValue = hateMax;
+        hateSlider.value = hateCount;
     }
 
     void Update()
@@ -61,7 +72,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             StartCoroutine(Shoot());
         }
-        
+
 
         punchInput = playerInput.actions["Punch"].WasPressedThisFrame();
         if (punchInput && canPunch)
@@ -69,10 +80,12 @@ public class PlayerCharacter : MonoBehaviour
             StartCoroutine(Punch());
         }
 
-        if(hateDrain)
+        if (hateDrain)
         {
             hateCount -= drainAmount * Time.deltaTime;
-            if(hateCount <= 1){
+            hateSlider.value = hateCount;
+            if (hateCount <= 1)
+            {
                 hateCount = 1;
                 hateDrain = false;
             }
@@ -81,17 +94,20 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Hurt(int damage)
     {
-        if(!isInvincible)
+        if (!isInvincible)
         {
             health -= damage;
+            healthSlider.value = health;
         }
-        else{
+        else
+        {
             StartCoroutine(InvincibleCooldown());
         }
         Debug.Log($"Health: {health}");
     }
 
-    private IEnumerator InvincibleCooldown(){
+    private IEnumerator InvincibleCooldown()
+    {
         isInvincible = true;
         yield return new WaitForSeconds(.5f);
         isInvincible = false;
@@ -110,11 +126,13 @@ public class PlayerCharacter : MonoBehaviour
     public void HateScoreCalc(float hateIncrease)
     {
         hateCount += hateIncrease;
+        hateSlider.value = hateCount;
 
         //clamp hateCount
         if (hateCount > hateMax)
         {
             hateCount = hateMax;
+            hateSlider.value = hateCount;
         }
 
         //hateCount goes down

@@ -2447,6 +2447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1170113655034889570, guid: b49eb71439763564e9ca70801a462657, type: 3}
   enemyPrefab: {fileID: 6184926243769806916, guid: fccab8b550eb546d8a5f5101b148e56d, type: 3}
+  player1HateCalculated: 0
+  player2HateCalculated: 0
   player1Spawn: {fileID: 1066692736}
   player2Spawn: {fileID: 411740450}
   itemSpawns:
