@@ -6,8 +6,9 @@ public class SceneController : MonoBehaviour
     public GameObject enemyPrefab;
     private GameObject enemy1;
     private GameObject enemy2;
-    [SerializeField] private Transform player1Spawn;
-    [SerializeField] private Transform player2Spawn;
+    
+    public Transform player1Spawn;
+    public Transform player2Spawn;
 
     [SerializeField] private Transform[] itemSpawns;
     [SerializeField] private GameObject itemPrefab;

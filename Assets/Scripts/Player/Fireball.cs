@@ -7,8 +7,7 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
     public float speed = 15.0f;
-    public int damage = 1;
-    [SerializeField] private GameObject particlePrefab;
+    public int damage = 2;
     private Rigidbody rb;
     void Start()
     {

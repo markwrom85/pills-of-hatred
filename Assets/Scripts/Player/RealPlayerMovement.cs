@@ -34,6 +34,8 @@ public class RealPlayerMovement : MonoBehaviour
 
     //[SerializeField] private PlayerUI playerUI;
 
+    public bool canMove = true;
+
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -45,7 +47,10 @@ public class RealPlayerMovement : MonoBehaviour
     void Update()
     {
         //SpeedControl();
-        MyInputs();
+        if(canMove)
+        {
+            MyInputs();
+        }
         
         //charge dash
         if (dashCount < 3)

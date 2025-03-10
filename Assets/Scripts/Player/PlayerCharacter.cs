@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    private int health;
+    public int health;
     public bool isInvincible;
 
     [Header("Hate System")]
@@ -88,7 +88,7 @@ public class PlayerCharacter : MonoBehaviour
         else{
             StartCoroutine(InvincibleCooldown());
         }
-        //Debug.Log($"Health: {health}");
+        Debug.Log($"Health: {health}");
     }
 
     private IEnumerator InvincibleCooldown(){

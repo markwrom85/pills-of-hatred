@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390909553752418547}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.168741, y: 0.19353552, z: -0.033810936, w: 0.96588165}
+  m_LocalRotation: {x: 0.16699594, y: 0.23801702, z: -0.041581932, w: 0.9558929}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -335,6 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8157711737321034100}
+  - component: {fileID: 1545686935856501079}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -361,6 +362,21 @@ Transform:
   - {fileID: 6654060263289532024}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545686935856501079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170113655034889570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc4c53db74301fd4cac007e98617db1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMesh: {fileID: 4671616971915397097}
+  gunMesh: {fileID: 7722631741647235092}
+  player: {fileID: 8426116009421143518}
 --- !u!1 &1171750987671459019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,7 +1060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8994396059597606131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16874103, y: 0.19353557, z: -0.033810962, w: 0.96588165}
+  m_LocalRotation: {x: 0.16699596, y: 0.23801704, z: -0.041581936, w: 0.9558929}
   m_LocalPosition: {x: 0, y: 2.25, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1308,6 +1324,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3340660353888837446, guid: 963e8185efd3178488fecbf9beecd93f, type: 3}
   m_PrefabInstance: {fileID: 1308106283347090684}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &4671616971915397097 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5977324924818692885, guid: 963e8185efd3178488fecbf9beecd93f, type: 3}
+  m_PrefabInstance: {fileID: 1308106283347090684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6226300564183902715 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4922171489641493767, guid: 963e8185efd3178488fecbf9beecd93f, type: 3}
@@ -1324,6 +1345,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63bd1370f1b3542d082f9abc090d9242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7722631741647235092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8722099312602264808, guid: 963e8185efd3178488fecbf9beecd93f, type: 3}
+  m_PrefabInstance: {fileID: 1308106283347090684}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8426116009421143518 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7406381131842150690, guid: 963e8185efd3178488fecbf9beecd93f, type: 3}
@@ -1341,6 +1367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc8d637653824f7a8fe892c3820d46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   isInvincible: 0
   hateCount: 1
   pickupHateIncrease: 1
