@@ -107,7 +107,7 @@ public class PlayerCharacter : MonoBehaviour
         Debug.Log($"Health: {health}");
     }
 
-    private IEnumerator InvincibleCooldown()
+    public IEnumerator InvincibleCooldown()
     {
         isInvincible = true;
         yield return new WaitForSeconds(.5f);
@@ -166,7 +166,7 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
         canShoot = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         canShoot = true;
     }
 

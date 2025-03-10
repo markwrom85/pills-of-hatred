@@ -15,6 +15,9 @@ public class Death : MonoBehaviour
         playerCharacter = GetComponentInChildren<PlayerCharacter>();
         realPlayerMovement = GetComponentInChildren<RealPlayerMovement>();
         sceneController = FindFirstObjectByType<SceneController>();
+
+        playerMesh.enabled = true;
+        gunMesh.SetActive(true);
     }
 
     void Update()

@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 2100000, guid: 62252d9cf08874e91b8773908d6c693e, type: 2}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SPECULAR_SETUP
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -27,11 +28,13 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _Metallic: 0.27
-    - _Smoothness: 0.3
+    - _Metallic: 0
+    - _Smoothness: 0.38
+    - _WorkflowMode: 0
     m_Colors:
-    - _BaseColor: {r: 0.22574759, g: 0.7169967, b: 0.8396226, a: 1}
-    - _Color: {r: 0.22574756, g: 0.7169967, b: 0.8396226, a: 1}
+    - _BaseColor: {r: 0, g: 0.19833922, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.1983392, b: 1, a: 1}
+    - _SpecColor: {r: 0, g: 0.15667772, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2319567458297137830

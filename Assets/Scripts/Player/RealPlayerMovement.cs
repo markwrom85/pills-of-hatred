@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class RealPlayerMovement : MonoBehaviour
 {
@@ -30,11 +31,15 @@ public class RealPlayerMovement : MonoBehaviour
     private bool dashInput;
     public float dashDistance = 50f;
     public float dashCount = 3f;
-    private float dashCooldown = 1f;
+    private float maxDash = 3f;
+    private float dashCooldown = .75f;
 
     //[SerializeField] private PlayerUI playerUI;
 
     public bool canMove = true;
+
+    public Slider dashSlider;
+
 
     void Awake()
     {
@@ -43,6 +48,14 @@ public class RealPlayerMovement : MonoBehaviour
         playerID = GetComponent<PlayerInput>().user.index + 1;
         rb.freezeRotation = true;
         jumpCount = 2;
+    }
+
+    void Start()
+    {
+        dashCount = maxDash;
+        dashSlider.maxValue = maxDash;
+        dashSlider.value = dashCount;
+        canMove = true;
     }
 
     void Update()
@@ -61,6 +74,7 @@ public class RealPlayerMovement : MonoBehaviour
             {
                 dashCount = 3;
             }
+            dashSlider.value = dashCount;
         }
     }
 

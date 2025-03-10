@@ -10,11 +10,25 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private RealPlayerMovement id;
 
     [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private GameObject deathScreen;
     public float score;
 
     void Start()
     {
         scoreText.text = "Player " + id.playerID + " Score: " + 0;
+        deathScreen.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (id.canMove == true)
+        {
+            deathScreen.SetActive(false);
+        }
+        else
+        {
+            deathScreen.SetActive(true);
+        }
     }
 
     public void AddPlayerScore(float point)
