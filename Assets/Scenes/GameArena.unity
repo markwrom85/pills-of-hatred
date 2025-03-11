@@ -2783,6 +2783,7 @@ GameObject:
   - component: {fileID: 821686531}
   - component: {fileID: 821686530}
   - component: {fileID: 821686532}
+  - component: {fileID: 821686533}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -2797,7 +2798,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821686529}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad8c54437dc440d8ab95b4713297b77, type: 3}
   m_Name: 
@@ -2883,6 +2884,37 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &821686533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821686529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5248c81948a39c44bdde302a832c15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1170113655034889570, guid: b49eb71439763564e9ca70801a462657, type: 3}
+  player1Spawn: {fileID: 1066692736}
+  player2Spawn: {fileID: 411740450}
+  itemSpawns:
+  - {fileID: 1673372537}
+  - {fileID: 85512236}
+  - {fileID: 1413501560}
+  - {fileID: 2058473534}
+  - {fileID: 1262854353}
+  - {fileID: 1287895366}
+  - {fileID: 1129165407}
+  - {fileID: 384099370}
+  - {fileID: 1216999709}
+  - {fileID: 1066795761}
+  - {fileID: 813477892}
+  itemPrefab: {fileID: 1862778593014257682, guid: b80c3ae8c7a04bc4e918231c26be03bc, type: 3}
+  winPanel: {fileID: 1546807573}
+  winText: {fileID: 447643510}
+  timeText: {fileID: 203754996}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

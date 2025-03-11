@@ -16,6 +16,8 @@ public class GameControl : MonoBehaviour
     [SerializeField] private Transform[] itemSpawns;
     [SerializeField] private GameObject itemPrefab;
     private GameObject[] itemObjects = new GameObject[4];
+    private List<int> availableSpots;
+
 
     [Header("UI Components")]
     [SerializeField] private GameObject winPanel;
@@ -23,7 +25,6 @@ public class GameControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timeText;
     private float timeLeft = 120;
 
-    private List<int> availableSpots;
 
     void Start()
     {
@@ -104,8 +105,9 @@ public class GameControl : MonoBehaviour
 
     private void HandleItemDestroyed(GameObject item)
     {
+        Debug.Log("was Called");
         // Find the index of the destroyed item
-        for (int i = 0; i < itemObjects.Length; i++)
+        for (int i = 0; i < itemObjects.Length ; i++)
         {
             if (itemObjects[i] == item)
             {
